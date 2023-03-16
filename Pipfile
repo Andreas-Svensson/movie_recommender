@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 pandas = "*"
 seaborn = "*"
+scikit-learn = "*"
+fuzzywuzzy = "*"
+python-levenshtein = "*"
 
 [dev-packages]
 ipykernel = "*"
