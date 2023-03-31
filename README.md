@@ -32,7 +32,7 @@ The matrix is made up of movieId as rows and userId as columns, as a dense matri
 
 For example, we see that userId 6 has given movieId 0 a rating of 4.5 stars.  
 
-Since all unique movieId's have been added to the matrix to avoid index mismatches, the movies without a rating are represented by an empty index. For example, using the small dataset and looking at index 816 which is a movie with no ratings, it will only print and empty string instead of giving an error.  
+Since all unique movieId's have been added to the matrix to avoid index mismatches, the movies without a rating are represented by an empty index. For example, using the small dataset and looking at index 816 which is a movie with no ratings, it will only print an empty string instead of giving an error.  
 
 #### Model:
 - A KNN model with the following parameters is created and fitted to the matrix:
