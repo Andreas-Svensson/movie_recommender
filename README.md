@@ -49,7 +49,7 @@ Below is a simplified representation of the dataset which only has two users and
 
 If a new user types in the title "Spiderman" the model will look at the spiderman vector (2, 4), and calculate the angle to the other 2 movies; Batman (1, 5) and Terminator (5, 2). Since the angle between Spiderman and Batman (green) is smaller than the angle between Spiderman and Terminator (red), the system will recommend Batman first.  
 
-![](assets/cosine_simularity.png)
+<img src="assets/cosine_simularity.png"  width="60%">
 
 In the actual model there are thousands of users and movies, with millions of ratings. As such the cosine simularity is calculated between as many vectors as there are movies, in as many dimensions as there are users. The 10 most similar movies based on the smallest angles to the input movie vector are then recommended to the user.  
 
