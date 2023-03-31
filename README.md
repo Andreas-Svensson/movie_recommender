@@ -13,20 +13,32 @@ Model used: KNN
 
 ### The recommender system works as follows:  
 
-Set up data
+#### Set up data
 
 - Load in dataset
 - Create a sparse matrix from movieId and userId, using rating values  
     The sparse matrix only stores values greater than 0, thus takes up less space  
 
-Model:
-- A KNN model with the following parameters is created:
+#### Model:
+- A KNN model with the following parameters is created and fitted to the matrix:
     ```py
     metric = "cosine", algorithm = "brute"
     ``` 
-- The model is fitted to the matrix  
+    Parameter explanation:
+    - Brute - the model looks at every movie vector and compare them with the input movie vector.  
+    - Cosine - the comparison is based on cosine simularity, which means the vector with the smallest angle to the input movie vector will be deemed most similar and thus recommended.  
 
-Function:
+#### Visual explanation of movie vectors
+
+Below is a simplified representation of the dataset which only has two users and 3 movies. The users, User1 and User2, are represented as the x- and y-axis. The movies are the vectors, which are made up of the two users' ratings. For example, the movie "Terminator" has been rated 5 stars by User1, and 2 stars by User2.
+
+If a new user types in the title "Spiderman" the model will look at the spiderman vector (2, 4), and calculate the angle to the other 2 movies; Batman (1, 5) and Terminator (5, 2). Since the angle between Spiderman and Batman (green) is smaller than the angle between Spiderman and Terminator (red), the system will recommend Batman first.  
+
+![](assets/cosine_simularity.png)
+
+In the actual model there are thousands of users and movies, with millions of ratings. As such the cosine simularity is calculated between as many vectors as there are movies, in as many dimensions as there are users. The 10 most similar movies based on the smallest angles to the input movie vector are then recommended to the user.  
+
+#### Step-by-step of the recommender function:
 - Function recommender takes a movie title string  
 - Closest match in df_movies is selected using fuzzywuzzy  
 - Index of matched title in df_movies is stored as idx  
