@@ -17,7 +17,22 @@ Model used: KNN
 
 - Load in dataset
 - Create a sparse matrix from movieId and userId, using rating values  
-    The sparse matrix only stores values greater than 0, thus takes up less space  
+    The sparse matrix only stores non-zero values, thus takes up less space  
+
+#### Sparse matrix structure
+
+The matrix is made up of movieId as rows and userId as columns, as a dense matrix this would be largely represented by zeroes, but the sparse matrix format only stores indices with non-zero values in this format:
+
+| movieId, userId | rating |
+| --- | --- |
+| (0, 0) | 4.0 |
+| (0, 4) | 4.0 |
+| (0, 6) | 4.5 |
+| (0, 14) | 2.5 |  
+
+For example, we see that userId 6 has given movieId 0 a rating of 4.5 stars.  
+
+Since all unique movieId's have been added to the matrix to avoid index mismatches, the movies without a rating are represented by an empty index. For example, using the small dataset and looking at index 816 which is a movie with no ratings, it will only print and empty string instead of giving an error.  
 
 #### Model:
 - A KNN model with the following parameters is created and fitted to the matrix:
